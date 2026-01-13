@@ -83,7 +83,8 @@ fieldset {
 
 header,
 article,
-nav {
+nav,
+p {
   text-align: left;
 }
 

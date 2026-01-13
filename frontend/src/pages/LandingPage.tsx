@@ -4,6 +4,8 @@ import type { Message } from '../types';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { formatDate } from '../utils/date';
 import { Pages } from '../utils/pages';
+import { EmptyInbox } from '../components/EmptyInbox';
+import { MessageTable } from '../components/MessagesTable';
 
 export const LandingPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -28,6 +30,7 @@ export const LandingPage: React.FC = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       <header>
@@ -39,31 +42,11 @@ export const LandingPage: React.FC = () => {
         </nav>
       </header>
       <main>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Subject</th>
-            </tr>
-          </thead>
-          <tbody>
-            {messages.map((msg) => (
-              <tr
-                key={msg.id}
-                onClick={() => {
-                  navigate(Pages.MESSAGE_PAGE.url(msg.id!));
-                }}
-              >
-                <td>{formatDate(msg.createdAt)}</td>
-                <td>
-                  <Link to={Pages.MESSAGE_PAGE.url(msg.id!)}>
-                    {msg.subject}
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {messages.length === 0 ? (
+          <EmptyInbox />
+        ) : (
+          <MessageTable messages={messages} />
+        )}
       </main>
     </>
   );
