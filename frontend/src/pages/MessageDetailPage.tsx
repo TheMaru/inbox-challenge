@@ -68,7 +68,9 @@ export const MessageDetailPage: React.FC = () => {
           </header>
           <p>{message.text}</p>
           <footer>
-            <button onClick={handleDelete}>Delete message</button>
+            <button className="delete-btn" onClick={handleDelete}>
+              Delete message
+            </button>
           </footer>
         </article>
       </main>

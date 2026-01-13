@@ -33,7 +33,7 @@ export const LandingPage: React.FC = () => {
         <h1>Inbox</h1>
         <nav>
           <NavLink to={Pages.CREATION_PAGE}>
-            <button>Create New Message</button>
+            <button className="create-btn">Create New Message</button>
           </NavLink>
         </nav>
       </header>
