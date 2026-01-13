@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
 import type { Message } from '../types';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { formatDate } from '../utils/date';
 import { Pages } from '../utils/pages';
 
 export const LandingPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +48,12 @@ export const LandingPage: React.FC = () => {
           </thead>
           <tbody>
             {messages.map((msg) => (
-              <tr key={msg.id}>
+              <tr
+                key={msg.id}
+                onClick={() => {
+                  navigate(Pages.MESSAGE_PAGE.url(msg.id!));
+                }}
+              >
                 <td>{formatDate(msg.createdAt)}</td>
                 <td>
                   <Link to={Pages.MESSAGE_PAGE.url(msg.id!)}>
