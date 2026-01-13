@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
 import type { Message } from '../types';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { formatDate } from '../utils/Date';
+import { Pages } from '../utils/pages';
 
 export const LandingPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -31,9 +32,9 @@ export const LandingPage: React.FC = () => {
       <header>
         <h1>Inbox</h1>
         <nav>
-          <Link to="/create">
+          <NavLink to={Pages.CREATION_PAGE}>
             <button>Create New Message</button>
-          </Link>
+          </NavLink>
         </nav>
       </header>
       <main>
@@ -49,7 +50,7 @@ export const LandingPage: React.FC = () => {
               <tr key={msg.id}>
                 <td>{formatDate(msg.createdAt)}</td>
                 <td>
-                  <Link to={`/message/${msg.id}`}>{msg.subject}</Link>
+                  <Link to={Pages.MESSAGE_PAGE(msg.id!)}>{msg.subject}</Link>
                 </td>
               </tr>
             ))}
