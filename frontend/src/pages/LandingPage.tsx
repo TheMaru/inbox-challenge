@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../api';
 import type { Message } from '../types';
 import { Link, NavLink } from 'react-router';
-import { formatDate } from '../utils/Date';
+import { formatDate } from '../utils/date';
 import { Pages } from '../utils/pages';
 
 export const LandingPage: React.FC = () => {
