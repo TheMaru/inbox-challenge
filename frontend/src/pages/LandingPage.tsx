@@ -50,7 +50,9 @@ export const LandingPage: React.FC = () => {
               <tr key={msg.id}>
                 <td>{formatDate(msg.createdAt)}</td>
                 <td>
-                  <Link to={Pages.MESSAGE_PAGE(msg.id!)}>{msg.subject}</Link>
+                  <Link to={Pages.MESSAGE_PAGE.url(msg.id!)}>
+                    {msg.subject}
+                  </Link>
                 </td>
               </tr>
             ))}
