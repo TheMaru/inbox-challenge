@@ -38,3 +38,12 @@ pnpm dev
 ```
 
 The app will be available at <http://localhost:5173>.
+
+### 3. Running Tests
+
+Again from project root
+
+```bash
+cd backend
+./mvnw test
+```
